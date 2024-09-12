@@ -36,17 +36,20 @@ let productBin = {
 };
 
 // Fungsi untuk menghitung total quantity
-function hitungTotalQuantity(productBin) {
+function hitungTotalQuantity(productBin, productCodeSearch) {
     let totalQuantity = 0;
-    let keys = Object.keys(productBin.data); // mendapatkan array key dari objek data
 
-    for (let i = 0; i < keys.length; i++) { //looping untuk menjumlahkan nilai quantity
-        let key = keys[i];
-        totalQuantity += productBin.data[key].quantity; //menjumlahkan nilai quantity untuk data array mulai dari ke-0 sampai length array
+    for (let i = 0; i < productBin.data.length; i++) { //looping untuk sebanyak length array
+        let key = productBin.data[i];
+
+        if (key.productCode===productCodeSearch) { //pengecekan jika productCode sama dengan product code yg ingin dijumlahkan nilainya
+            totalQuantity += key.quantity; //menjumlahkan nilai quantity untuk data array mulai dari ke-0 sampai length array
+        }
+        
     }
 
     return totalQuantity;
 }
 
-const totalQuantity = hitungTotalQuantity(productBin);
-console.log("Total Quantity: " + totalQuantity);
+const totalQuantity = hitungTotalQuantity(productBin, "FBR00040101");
+console.log("Total Quantity untuk productCode FBR00040101 adalah : " + totalQuantity);
